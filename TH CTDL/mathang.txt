@@ -1,0 +1,10 @@
+3
+LaptopDell
+10
+1500
+SmartphoneSamsung
+20
+500
+TabletApple
+15
+800
