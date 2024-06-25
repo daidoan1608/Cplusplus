@@ -1,6 +1,0 @@
-5
-001 Nguyen Van A    Nam 7.5
-002 Tran Thi B  Nu 8.5
-003 Le Van C    Nam    9.0
-004 Le Van D    Nam 9.5
-005 Pham Thi D  Nu  10.0
