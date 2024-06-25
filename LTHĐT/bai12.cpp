@@ -54,7 +54,7 @@ XauKyTu::XauKyTu(){
     strcpy(tenTinh,"");
 }
 bool XauKyTu::operator<(const XauKyTu &xt){
-    return (stricmp(tenTinh,xt.tenTinh) < 0);
+    return (strcmp(tenTinh,xt.tenTinh) < 0);
 }
 istream& operator>>(istream &cin, XauKyTu &xt){
     cout << "Nhap ten tinh: ";

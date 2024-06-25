@@ -1,8 +1,0 @@
-1,anh,cntta,9
-2,thu,cntta,10
-3,thi,cntta,7
-4,ha,cntta,4
-5,hoa,cntta,1
-6,ly,cntta,7.2
-7,thanh,cntta,3
-8,nam,cntta,2

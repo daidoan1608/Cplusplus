@@ -32,7 +32,7 @@ int main()
 void cQInsert(Node **F, Node **R, int x)
 {
     Node *N = makeNode(x);
-    if (isEmpty())
+    if (isEmpty(*F,*R))
     {
         *F = N;
         *R = N;

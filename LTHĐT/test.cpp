@@ -15,6 +15,16 @@ public:
     void xuat();  // A member function to display data (optional)
 };
 
+int main() {
+    MatHang mh1;  // Create an object using the no-argument constructor
+    mh1.nhap();   // Input data
+    mh1.xuat();   // Display data
+
+    MatHang mh2("Example", 10, 25.5);  // Create an object using the parameterized constructor
+    mh2.xuat();   // Display data
+
+    return 0;
+}
 // Definition of no-argument constructor
 MatHang::MatHang() : soLuong(0), donGia(0), tenHang(""){
 }
@@ -39,15 +49,4 @@ void MatHang::xuat() {
     std::cout << "Ten mat hang: " << tenHang << std::endl;
     std::cout << "So luong: " << soLuong << std::endl;
     std::cout << "Don gia: " << donGia << std::endl;
-}
-
-int main() {
-    MatHang mh1;  // Create an object using the no-argument constructor
-    mh1.nhap();   // Input data
-    mh1.xuat();   // Display data
-
-    MatHang mh2("Example", 10, 25.5);  // Create an object using the parameterized constructor
-    mh2.xuat();   // Display data
-
-    return 0;
 }
