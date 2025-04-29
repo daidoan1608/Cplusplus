@@ -14,102 +14,77 @@ using namespace std;
 
 //Khai bao mau lop doi tuong ngan xep
 template <class Type>
-class Stack
+class Queue
 {
 	private:
 		enum {size=32};
-		Type S[size];
-		int T;
+		Type Q[size];
+		int F,R;
 	
 	public:
-		Stack();
-		void push(Type x);
-		Type pop();
+		Queue();
+		void insert(Type x);
+		Type remove();
 		bool isEmpty();
 };
 
 //===chuong trinh chinh===
 int main()
 {
-	//Tao 1 doi tuong ngan xep co phan tu la so nguyen
-	Stack<int> s1;
-	//Tao 1 doi tuong ngan xep co phan tu la ky tu
-	Stack<char> s2;
-	
-	//Khai bao bien
-	int n,thuong,du;
-	
-	cout<<"Chuong trinh chuyen so nguyen duong n sang so nhi phan va so hex";
-	cout<<"\n\nNhap vao so nguyen duong n= ";
-	cin>>n;
-	
-	//Chuyen n sang he 2
-	thuong=n;
-	while(thuong)
-	{
-		du = thuong%2;
-		thuong /= 2;
-		s1.push(du);
-	}
-	
-	cout<<"So nhi phan cua "<<n<<" la: ";
-	while(!s1.isEmpty()) cout<<s1.pop();
+	Queue<int> Q1,Q2;
 
-	//Chuyen n sang he 16
-	thuong=n;
-	while(thuong)
-	{
-		du = thuong%16;
-		thuong /= 16;
-		
-		if(du<10) s2.push(du+48);
-		else s2.push(du+55);
-	}
-	
-	cout<<"\nSo hex cua "<<n<<" la: ";
-	while(!s2.isEmpty()) cout<<s2.pop();
 	
 	cout<<endl;
 	return 0;
 }
 //===dinh nghia ham===
 template <class Type>
-Stack<Type>::Stack():T(-1)
+Queue<Type>::Queue():F(-1),R(-1)
 {
 	
 }
 
 template <class Type>
-void Stack<Type>::push(Type x)
+void Queue<Type>::insert(Type x)
 {
 	//1.Kiem tra ngan xep day
-	if(T==size-1)
+	if(F==0 && R==size-1 || F==R+1)
 	{
 		cout<<"Ngan xep da day!";
 		return;
 	}
-	
-	//2-3.Tang T len 1 va dua x vao ngan xep tai vi tri T
-	S[++T] = x;
+	if (R==-1)
+		F=R=0;
+	else if(R==size-1)
+		R=0;
+	else
+		R++;
+
+	Q[R] = x;
 }
 
 template <class Type>
-Type Stack<Type>::pop()
+Type Queue<Type>::remove()
 {
-	//1.Kiem tra ngan xep rong
-	if(T==-1)
+	Type tg;
+	if(F==-1)
 	{
-		Type tg;
 		cout<<"Ngan xep da rong!";
 		return tg;
 	}
-	
-	//2-3-4.Tra ve phan tu dinh va giam T di 1
-	return S[T--];
+	tg = Q[F];
+	if (F==R)
+		F=R=-1;
+	else if (F==size-1)
+		F=0;
+	else
+		F++;
+
+	return tg;
 }
 
 template <class Type>
-bool Stack<Type>::isEmpty()
+bool Queue<Type>::isEmpty()
 {
-	return T==-1;
+	return F==-1;
 }

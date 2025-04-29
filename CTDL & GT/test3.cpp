@@ -1,10 +1,10 @@
-#include <stdio.h>
 #include <iostream>
+#include <stdio.h>
 #include <fstream>
 
 using namespace std;
 
-void selectionSort(int *arr, int n);
+void bubbleSort(int *arr, int n);
 
 int main()
 {
@@ -18,29 +18,25 @@ int main()
         fin >> arr[i];
         cout << arr[i] << "   ";
     }
-    selectionSort(arr,n);
+    bubbleSort(arr,n);
     cout << "\nDay khoa sau khi sap xep giam dan la: \n";
     for (int i = 0; i < n; i++)
-        cout << arr[i] << "";
+        cout << arr[i] << "   ";
     cout << endl;
     return 0;
 }
 
-void selectionSort(int *arr, int n)
+void bubbleSort(int *arr, int n)
 {
     for (int i = 0; i < n - 1; i++)
     {
-        int max = i;
-        for (int j = i + 1; j < n; j++)
+        for (int j = n-1 ; j > i; j--)
         {
-            if (arr[j] > arr[max])
-                max = j;
+            if (arr[j] > arr[j - 1]){
+                int temp = arr[j-1];
+                arr[j-1] = arr[j];
+                arr[j] = temp;
+            }
         }
-        if (max!=i)
-        {
-            int temp = arr[i];
-            arr[i] = arr[max];
-            arr[max] = temp;
-        }     
     }
 }

@@ -1,66 +1,75 @@
-// Ho ten: Đoàn Minh Đại
-// MaSV: 671259
-// Lop: K67CNTTA
-// De:
-
-#include <bits/stdc++.h>
+#include <iostream>
+#include <cstring> // Để sử dụng hàm xử lý chuỗi như strcpy
 
 using namespace std;
 
-struct Node
+struct ThiSinh
 {
-    int infor;
-    struct Node *link;
+    char soBaoDanh[10];
+    float diemThi;
 };
 
-typedef struct Node Node;
+struct Node
+{
+    ThiSinh thiSinh; // Dữ liệu là một ThiSinh
+    Node *link;      // Con trỏ đến node tiếp theo
+};
 
-// Khai bao ham cai dat cac phep toan tren ngan xep
-Node* makeNode(int x);
-void push(Node **T,int x);
-int pop(Node **T);
+// Khai báo hàm xử lý stack
+void push(Node *&T, ThiSinh thiSinh);
+ThiSinh pop(Node *&T);
 bool isEmpty(const Node *T);
 
-//===chuong trinh chinh===
+//=== Chương trình chính ===
 int main()
 {
-    // Cai dat cau truc luu tru ke tiep cua ngan xep
-    Node *T=NULL;
-    
-    cout << endl;
+    Node *T = nullptr; // T là ngăn xếp (ban đầu rỗng)
+
+    // Đẩy các phần tử vào ngăn xếp
+    ThiSinh ts1 = {"12345", 8.5};
+    ThiSinh ts2 = {"67890", 9.0};
+    ThiSinh ts3 = {"11223", 7.0};
+
+    push(T, ts1);
+    push(T, ts2);
+    push(T, ts3);
+    // Lấy các phần tử ra và in thông tin
+    cout << "Pop từ ngăn xếp:\n";
+    while (!isEmpty(T))
+    {
+        ThiSinh ts = pop(T);
+        cout << "SBD: " << ts.soBaoDanh << ", Diem thi: " << ts.diemThi << endl;
+    }
+    system("pause");
     return 0;
 }
-//===dinh nghia ham===
-void push(Node **T, int x)
+
+//=== Định nghĩa hàm ===
+void push(Node *&T, ThiSinh thiSinh)
 {
-    Node *N=makeNode(x);
-    N->link= *T;
-    *T=N;
+    Node *N = new Node;
+    N->thiSinh = thiSinh;
+    N->link = T;
+    T = N;
 }
 
-int pop(Node **T)
+ThiSinh pop(Node *&T)
 {
-    if (T==NULL)
+    ThiSinh temp = {"", 0.0}; // Trả về đối tượng rỗng nếu ngăn xếp rỗng
+    if (T == nullptr)
     {
-        printf("Ngan xep rong.\n");
-        return 1;
+        cout << "Ngăn xếp rỗng.\n";
+        return temp;
     }
-    int tg=(*T)->infor;
-    Node *P=*T;
-    *T=(*T)->link;
-    free(P);
-    return tg;
+
+    Node *P = T;
+    temp = P->thiSinh;
+    T = T->link;
+    delete P;
+    return temp;
 }
 
-bool isEmpty(const Node **T)
+bool isEmpty(const Node *T)
 {
-    return T == NULL;
-}
-
-Node* makeNode(int x)
-{
-    Node *newNode= (Node*)malloc(sizeof(Node));
-    newNode->infor = x;
-    newNode->link = NULL;
-    return newNode;
+    return T == nullptr;
 }

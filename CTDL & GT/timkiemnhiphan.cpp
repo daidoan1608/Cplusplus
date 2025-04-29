@@ -6,7 +6,7 @@ int binarySearch(int *arr, int left, int right, int key) {
         int mid = left + (right - left) / 2;
 
         if (arr[mid] == key) {
-            return mid; // Trả về vị trí của key trong mảng
+            return mid;
         }
 
         if (arr[mid] < key) {
@@ -15,17 +15,16 @@ int binarySearch(int *arr, int left, int right, int key) {
             right = mid - 1;
         }
     }
-
-    return -1; // Trả về -1 nếu key không tồn tại trong mảng
+    return -1;
 }
 
 int linearSearch(int *arr, int n, int key) {
     for (int i = 0; i < n; i++) {
         if (arr[i] == key) {
-            return i; // Trả về vị trí của key trong mảng
+            return i;
         }
     }
-    return -1; // Trả về -1 nếu key không tồn tại trong mảng
+    return -1;
 }
 
 int main() {
